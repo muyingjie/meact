@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        class Vnode {
+            construction(type, props, key, ref) {
+                this.type = type;
+                this.props = props;
+                this.key = key;
+                this.ref = ref;
+            }
+        }
+
+        function createElement(type, config, ...children) {
+            let props = {},
+                key = null,
+                ref = null,
+                childLength = children.length;
+
+            if (config != null) {
+                key = (config.key === undefined ? null : '' + config.key);
+                ref = (config.ref === undefined ? null : config.ref);
+
+                for (let propName in config) {
+                    if (propName === 'key' || propName === 'ref') continue;
+                    if (config.hasOwnProperty(propName)) {
+                        props[propName] = config[propName];
+                    }
+                }
+            }
+
+            if (childLength === 1) {
+                props.children = children[0];
+            } else {
+                props.children = children;
+            }
+
+            return new Vnode(type, props, key, ref);
+        }
+
+        const React = {
+            createElement
+        };
+    </script>
+    <script type="text/babel">
+        let a = <div className='jsx'><span></span></div>
+        console.log(a);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

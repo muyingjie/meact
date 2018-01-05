@@ -1,7 +1,3 @@
-class Person{
-    render() {
-        let obj = {a: 1};
+require("./main.css");
 
-        return <div>{obj.a}</div>;
-    }
-}
+function show() {}
